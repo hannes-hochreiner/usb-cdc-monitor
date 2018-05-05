@@ -1,0 +1,32 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build usb-cdc-monitor",
+      "type": "shell",
+      "command": "make usb-cdc-monitor",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "build test runner",
+      "type": "shell",
+      "command": "make test_runner",
+      "group": "build"
+    },
+    {
+      "label": "run tests",
+      "type": "shell",
+      "command": "./cu_tests",
+      "dependsOn": "build test runner",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
+    }
+  ]
+}
