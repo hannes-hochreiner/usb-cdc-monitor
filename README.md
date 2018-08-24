@@ -1,5 +1,5 @@
 # usb-cdc-monitor
-Custom USB CDC monitoring
+Custom USB CDC monitoring for the [ism-gateway project](https://github.com/hannes-hochreiner/ism-gateway) based on an example by [tytouf](https://github.com/tytouf/libusb-cdc-example).
 
 # Testing
 
