@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
 
   fprintf(stdout, "looking for USB device with vendor id 0x%x and product id 0x%x\n", vid, pid);
 
-  reportUsbError(libusb_init(NULL));
+  reportUsbError(initUsb());
 
   libusb_device_handle* devHndl = libusb_open_device_with_vid_pid(NULL, vid, pid);
 
@@ -63,8 +63,6 @@ int main(int argc, char** argv) {
       buf[len] = 0;
       fprintf(stdout, "Received: \"%s\"\n", buf);
     }
-
-    // sleep(1);
   }
 
   exit(0);

@@ -7,5 +7,6 @@
 
 int reportUsbError(int res);
 void cleanupAndExit(struct libusb_config_descriptor* conf, libusb_device_handle* devHndl);
+int initUsb();
 
 #endif

@@ -1,5 +1,17 @@
 #include "../inc/usb.h"
 
+int initUsb() {
+  int res = libusb_init(NULL);
+
+  if (res != 0) {
+    return res;
+  }
+
+  res = libusb_set_option(NULL, LIBUSB_OPTION_LOG_LEVEL, LIBUSB_LOG_LEVEL_WARNING);
+
+  return res;
+}
+
 int reportUsbError(int res) {
   if (res < 0) {
     fprintf(stderr, "libusb error: %s\n", libusb_error_name(res));
@@ -14,6 +26,7 @@ void cleanupAndExit(struct libusb_config_descriptor* conf, libusb_device_handle*
   if (conf) {
     for (int if_num = 0; if_num < conf->bNumInterfaces; if_num++) {
       libusb_release_interface(devHndl, if_num);
+      libusb_attach_kernel_driver(devHndl, if_num);
     }
 
     libusb_free_config_descriptor(conf);
