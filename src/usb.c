@@ -6,10 +6,14 @@ int initUsb() {
   if (res != 0) {
     return res;
   }
+  
+  libusb_set_debug(NULL, 2);
 
-  res = libusb_set_option(NULL, LIBUSB_OPTION_LOG_LEVEL, LIBUSB_LOG_LEVEL_WARNING);
+  // Raspbian is still on version 1.0.21 where the libusb_set_option call is not implemented.
+  // For the time being, we'll have to live with the deprecation warning.
+  // res = libusb_set_option(NULL, LIBUSB_OPTION_LOG_LEVEL, LIBUSB_LOG_LEVEL_WARNING);
 
-  return res;
+  return 0;
 }
 
 int reportUsbError(int res) {
