@@ -64,7 +64,7 @@ int main(int argc, char** argv) {
       fprintf(stdout, "Received: \"%s\"\n", buf);
     }
 
-    sleep(1);
+    // sleep(1);
   }
 
   exit(0);
