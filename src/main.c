@@ -60,8 +60,13 @@ int main(int argc, char** argv) {
 
   while(1) {
     if (!reportUsbError(libusb_bulk_transfer(devHndl, EP_IN_ADDR, buf, 64, &len, 1000))) {
-      buf[len] = 0;
-      fprintf(stdout, "Received: \"%s\"\n", buf);
+      fprintf(stdout, "Received: ");
+
+      for (int cntr = 0; cntr < len; cntr++) {
+        fprintf(stdout, "%02x", buf[cntr]);
+      }
+
+      fprintf(stdout, "\n");
     }
   }
 
